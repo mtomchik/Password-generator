@@ -2,12 +2,18 @@
 var generateBtn = document.querySelector("#generate");
 
 function randomInt(min, max) {
-return Math.floor(Math.random()*(max - min) + min)
+if (!max) {
+  max = min
+  min = 0
+}
+var rand= Math.random()
+return Math.floor(min*(1 - rand) + rand*max)
 }
 
 function getRandomitem(list) {
-  return list[randomInt(0 , list.length - 1)]
+  return list [randomInt(list.length)]
 }
+
 
 function generatePassword() {
 
@@ -41,6 +47,8 @@ function generatePassword() {
   var specialChar = ["!","@","#","$","%","^","&","*"]
   var lowerCase = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
   var upperCase = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+  
+  var selection = []
   /*can also be written
   var upperCase =[]
   for (var i=0; i< lowerCase.length; i++) {
@@ -49,32 +57,36 @@ function generatePassword() {
   */
 
 //this is our "shopping cart" for what we want in our password
-var selection = []
 
-if (number) {
+if (number === true) {
   selection.push(numerals)
 
-  var num = Math.floor(Math.random() * numerals.length)
 }
 
-if (special) {
+if (special === true) {
   selection.push(specialChar)
 }
 
-if (lower) {
+if (lower === true) {
   selection.push(lowerCase)
 }
 
-if (upper) {
+if (upper === true) {
 selection.push(upperCase)
   }
 
-  var generatedPassword =""
+if (selection.length === 0){
+  selection.push(upperCase)
+  }
 
-  for (var i=0; i< passwordLength; i++) {
+var generatedPassword = ""
+
+for (var i = 0; i < passwordLength; i++) {
 var randomList = getRandomitem(selection)
 var randomChar = getRandomitem(randomList)
+generatedPassword += randomChar
   }
+  return generatedPassword
 
 }
 
@@ -88,19 +100,3 @@ function writePassword() {
 }
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-
-/*
-if (lower){
-  var lc = Math.floor(Math.random() * lowerCase.length)
-}
-
-
-if (upper){
-  var uc = Math.floor(Math.random() * upperCase.length)
-}
-if (special) {
-  var spec = Math.floor(Math.random() * specialChar.length)
-}
-
-}*/
