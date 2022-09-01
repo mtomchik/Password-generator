@@ -6,7 +6,7 @@ this is a random password generator that can create passwords containing numbers
 
 Visuals: 
 
-!["Screenshot"](Screenshot.jpg)
+!["Screenshot"](passgen.jpg)
 
 Usage
 You can use this to generate andom passwords for anything you might need a password for and clarify what parameters it should require.
